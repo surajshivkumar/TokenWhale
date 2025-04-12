@@ -23,12 +23,8 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "*://*.anthropic.com/*",
-        "*://*.openai.com/*",
-        "*://*.google.com/*"
-      ],
-      "js": ["query-patterns.js", "query-optimizer.js", "content.js"]
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"]
     }
   ],
   "background": {
