@@ -6,7 +6,7 @@
       body {
         width: 300px;
         padding: 20px;
-        font-family: Arial, sans-serif;
+        font-family: 'Roboto', Arial, sans-serif; /* Updated font */
         background: linear-gradient(135deg, #e3f2fd, #bbdefb);
         color: #333;
         border-radius: 8px;
@@ -16,6 +16,7 @@
         text-align: center;
         color: #1976d2;
         margin-bottom: 20px;
+        font-family: 'Roboto Slab', serif; /* Updated font */
       }
       button {
         background-color: #1976d2;
@@ -57,6 +58,7 @@
         border-radius: 4px;
         font-size: 14px;
         color: #33691e;
+        font-family: 'Roboto Mono', monospace; /* Updated font */
       }
       .analytics h3 {
         margin: 0 0 10px;
@@ -71,12 +73,13 @@
   <body>
     <h2>Token Whale</h2>
     <button id="DashBoardBtn">Go to Dashboard</button>
-    
+    <button id="LogoutBtn">Logout</button>
     <div id="status"></div>
     <div class="analytics">
       <h3>Analytics</h3>
       <p>Tokens saved: <span id="tokensSaved">0</span></p>
       <p>Decrease in Carbon Emissions: <span id="carbonEmissions">0g</span></p>
+      <p>Electricity Utilized: <span id="electricityUtilized">0kWh</span></p>
     </div>
     <script src="popup.js"></script>
   </body>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login - Token Whale</title>
+    <style>
+      body {
+        width: 300px;
+        padding: 20px;
+        font-family: 'Roboto', Arial, sans-serif;
+        background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+        color: #333;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 50px auto;
+      }
+      h2 {
+        text-align: center;
+        color: #8e24aa;
+        margin-bottom: 20px;
+        font-family: 'Roboto Slab', serif;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      input {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      button {
+        background-color: #8e24aa;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #6a1b9a;
+      }
+      .error {
+        color: red;
+        font-size: 12px;
+        text-align: center;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <div id="errorMessage" class="error"></div>
+    <script src="login.js"></script>
+  </body>
+</html>
