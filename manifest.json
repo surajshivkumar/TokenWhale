@@ -3,7 +3,7 @@
   "name": "Token Whale",
   "version": "1.0",
   "description": "Optimize your prompts to LLMs by reducing token count",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "storage"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

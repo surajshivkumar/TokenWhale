@@ -49,6 +49,23 @@
       .error {
         color: red;
       }
+      .analytics {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f1f8e9;
+        border: 1px solid #c5e1a5;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #33691e;
+      }
+      .analytics h3 {
+        margin: 0 0 10px;
+        font-size: 16px;
+        color: #2e7d32;
+      }
+      .analytics p {
+        margin: 5px 0;
+      }
     </style>
   </head>
   <body>
@@ -62,6 +79,11 @@
       Keyboard shortcut: <b>Cmd+K</b> (Mac) / <b>Ctrl+K</b> (Windows/Linux)
     </div>
     <div id="status"></div>
+    <div class="analytics">
+      <h3>Analytics</h3>
+      <p>Tokens saved: <span id="tokensSaved">0</span></p>
+      <p>Decrease in Carbon Emissions: <span id="carbonEmissions">0g</span></p>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>
