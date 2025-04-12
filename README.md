@@ -3,7 +3,7 @@
 ![TokenWhale Logo](./images/whale_svg.png)  
 *Chrome extension to optimize token usage in LLM chat apps (ChatGPT, Gemini, etc.)*
 
-## 🔖 References
+# 🔖 References
 
 - [LLM Energy Consumption – Adasci](https://adasci.org/how-much-energy-do-llms-consume-unveiling-the-power-behind-ai/)
 - [LLM Energy Use – Epoch AI](https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use)
