@@ -4,7 +4,7 @@
 
 ---
 
-## 🐋 Name Inspiration: TokenWhale
+## 🐋 Name Inspiration: TokenWhale 
 The name TokenWhale is inspired by the carbon-capturing power of real whales. According to Sustainability by Numbers, each whale can capture and help store around 33 tons of CO₂, making them vital to the planet’s climate balance.
 
 Just like whales reduce carbon from the atmosphere, TokenWhale aims to reduce the “carbon footprint” of AI interactions by helping users minimize token usage—each token saved is a step toward greener, more responsible AI.
@@ -112,3 +112,12 @@ To contribute:
 Questions, ideas, or feedback?  
 Open an issue or start a discussion on the repo:  
 🔗 [https://github.com/surajshivkumar/TokenWhale/issues](https://github.com/surajshivkumar/TokenWhale/issues)
+
+## References
+
+Inspiration for name : https://www.sustainabilitybynumbers.com/p/whale-carbon-capture
+https://www.businessenergyuk.com/knowledge-hub/chatgpt-energy-consumption-visualized/
+https://www.thetimes.com/uk/technology-uk/article/thirsty-chatgpt-uses-four-times-more-water-than-previously-thought-bc0pqswdr?region=global
+
+   
+ 
