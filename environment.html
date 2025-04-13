@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Environmental Impact Calculator</title>
+  <link rel="stylesheet" href="environment.css"/>
+</head>
+<body>
+  <header class="site-header">
+    <h1>🌱 Environmental Impact Calculator</h1>
+    <p>Understand how your AI usage impacts the planet</p>
+  </header>
+
+  <main class="container">
+    <section class="input-panel">
+      <select id="state-select"></select>
+      <select id="model-select">
+        <option value="" disabled selected>Select a model</option>
+        <option value="llama2">LLaMA-2 13B (0.4 Wh/token)</option>
+        <option value="bert">BERT Base (0.2 Wh/token)</option>
+        <option value="mistral">Mistral 7B (0.3 Wh/token)</option>
+        <option value="falcon">Falcon 40B (0.8 Wh/token)</option>
+        <option value="gptj">GPT-J 6B (0.5 Wh/token)</option>
+        <option value="bloom">BLOOM 176B (1.0 Wh/token)</option>
+      </select>
+      <input type="number" id="tokens-input" placeholder="Enter number of tokens"/>
+      <button id="calculate-btn">Calculate</button>
+    </section>
+
+    <section class="results-grid">
+      <div class="result-card"><h3>⚡ Energy</h3><p id="energy">--</p></div>
+      <div class="result-card"><h3>🌍 GHG Emissions</h3><p id="ghg">--</p></div>
+      <div class="result-card"><h3>🚶 Walking</h3><p id="walk">--</p></div>
+      <div class="result-card"><h3>🚗 EV</h3><p id="ev">--</p></div>
+      <div class="result-card"><h3>🎬 Streaming</h3><p id="stream">--</p></div>
+    </section>
+
+    <section class="global-impact centered-impact">
+      <h2>🌎 What if 1% of the planet does this request everyday for 1 year ?</h2>
+      <div class="results-grid center-align">
+        <div class="result-card"><h3>💨 Wind Turbines Needed</h3><p id="wind-turbines">--</p></div>
+        <div class="result-card"><h3>🏡 U.S. Homes Powered</h3><p id="city-multiplier">--</p></div>
+        <div class="result-card"><h3>🚘 Miles Driven by Car</h3><p id="car-miles">--</p></div>
+      </div>
+    </section>
+    
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 EcoImpact • Built to raise AI sustainability awareness 🌿</p>
+  </footer>
+
+  <script src="environment.js"></script>
+</body>
+</html>
