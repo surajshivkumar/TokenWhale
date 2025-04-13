@@ -37,14 +37,14 @@ TokenWhale empowers users to interact with LLMs more efficiently and sustainably
    - Open Chrome and go to `chrome://extensions/`
    - Enable **Developer mode** (top-right toggle)
    - Click **Load unpacked**
-   - Select the `TokenWhale` folder from your local machine
+   - Select the `extension` folder from your local machine
 
 ---
 
 ## 📁 Project Structure
 
 ```
-TokenWhale/
+TokenWhale/extension
 ├── background.js             # Handles background events (e.g., extension installed)
 ├── content.js                # Injected into ChatGPT webpage to monitor usage
 ├── dashboard.html            # Token usage dashboard UI
@@ -100,14 +100,6 @@ To contribute:
 2. Create a new branch (`git checkout -b feature-name`)  
 3. Commit your changes  
 4. Push and submit a pull request
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
 
 ## 📬 Contact
 
