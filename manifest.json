@@ -28,7 +28,14 @@
         "*://*.openai.com/*",
         "*://*.google.com/*"
       ],
-      "js": ["query-patterns.js", "query-optimizer.js", "content.js"]
+      "js": [
+        "query-patterns.js",
+        "query-optimizer.js",
+        "content.js",
+        "image-optimizer.js",
+        "contentScript.js",
+        "liveTokenCount.js"
+      ]
     }
   ],
   "background": {

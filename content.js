@@ -36,23 +36,63 @@ function countTokensMore(text) {
 // Track last response to avoid duplicates
 let lastResponseText = "";
 
-// Function to get the latest response text using the specific class selector
-function getLatestResponseText() {
-  const responses = document.getElementsByClassName(
-    "markdown markdown-main-panel tutor-markdown-rendering stronger"
-  );
+// Function to show token reduction overlay
+function showTokenReductionOverlay(tokensReduced) {
+  // Create the overlay div element
+  const overlay = document.createElement("div");
 
-  if (responses && responses.length > 0) {
-    return responses.item(responses.length - 1).innerText;
-  } else {
-    console.log("No response elements found");
-    return null;
+  // Style the overlay
+  overlay.style.position = "fixed";
+  overlay.style.bottom = "20px"; // Positioned at the bottom of the screen
+  overlay.style.left = "50%"; // Center horizontally
+  overlay.style.transform = "translateX(-50%)"; // To center the overlay
+  overlay.style.padding = "12px 20px";
+  overlay.style.backgroundColor = "#FF5733"; // Eye-catching color (orange-red)
+  overlay.style.color = "white";
+  overlay.style.fontSize = "16px";
+  overlay.style.fontWeight = "bold";
+  overlay.style.borderRadius = "10px";
+  overlay.style.zIndex = "2147483647"; // Very high z-index to ensure it's above all other elements
+  overlay.style.fontFamily = "Arial, sans-serif";
+  overlay.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.3)";
+  overlay.innerText = `${tokensReduced} tokens reduced`;
+
+  // Append overlay to the body
+  document.body.appendChild(overlay);
+
+  // Debug log to ensure overlay is created
+  console.log("Token reduction overlay created!");
+
+  // Add a quick pop animation
+  overlay.style.transform = "translateX(-50%) scale(1.1)";
+  setTimeout(() => {
+    overlay.style.transform = "translateX(-50%) scale(1)"; // Pop back to normal size
+  }, 50); // Allow a quick moment for the pop effect
+
+  // Keep the overlay visible for 3 seconds
+  setTimeout(() => {
+    document.body.removeChild(overlay); // Remove overlay from DOM after 3 seconds
+    console.log("Token reduction overlay removed!");
+  }, 3000); // Keep the overlay on screen for 3 seconds
+}
+
+// Function to get the latest response text
+function getLatestResponseText() {
+  // Add implementation here to get the latest response text from Gemini
+  // This might be specific to the Gemini UI structure
+  // For example:
+  const responseElements = document.querySelectorAll(
+    ".gemini-response-container"
+  );
+  if (responseElements.length > 0) {
+    return responseElements[responseElements.length - 1].textContent;
   }
+  return null;
 }
 
 // Function to extract Gemini response and count tokens
 function extractGeminiResponse() {
-  console.log("Checking for Gemini responses...");
+  // console.log("Checking for Gemini responses...");
 
   const responseText = getLatestResponseText();
 
@@ -77,6 +117,8 @@ function extractGeminiResponse() {
     console.log(`Better estimate: ${betterTokenCount} tokens`);
     console.log(`Character count: ${responseText.length} chars`);
     console.log("===================================");
+
+    // Don't call showTokenReductionOverlay here since we're just analyzing responses
 
     return {
       text: responseText,
@@ -131,28 +173,41 @@ function findAndOptimizeInputField() {
     console.log("Target field found, optimizing text");
 
     // Handle different types of input fields
+    let originalText = "";
     if (targetField.tagName.toLowerCase() === "textarea") {
       // For textarea elements
-      const originalText = targetField.value;
+      originalText = targetField.value;
+    } else {
+      // For contenteditable divs
+      originalText = targetField.textContent;
+    }
 
-      // Apply the optimization
-      const result = optimizer.optimize(originalText);
-      console.log("Optimization result:", result);
+    // Count tokens before optimization
+    const originalTokenCount = countTokensMore(originalText);
 
-      // Replace the text with the optimized version
-      targetField.value = result.optimized;
+    // Apply the optimization
+    const result = optimizer.optimize(originalText);
+    console.log("Optimization result:", result);
+
+    // Count tokens after optimization
+    const optimizedText = result.optimized;
+    const optimizedTokenCount = countTokensMore(optimizedText);
+
+    // Calculate tokens reduced
+    const tokensReduced = originalTokenCount - optimizedTokenCount;
+
+    // Show the token reduction overlay
+    if (tokensReduced > 0) {
+      showTokenReductionOverlay(tokensReduced);
+    }
+
+    // Update the field with optimized text
+    if (targetField.tagName.toLowerCase() === "textarea") {
+      targetField.value = optimizedText;
       targetField.dispatchEvent(new Event("input", { bubbles: true }));
       console.log("Text optimized in textarea");
     } else {
-      // For contenteditable divs
-      const originalText = targetField.textContent;
-
-      // Apply the optimization
-      const result = optimizer.optimize(originalText);
-      console.log("Optimization result:", result);
-
-      // Replace the text with the optimized version
-      targetField.textContent = result.optimized;
+      targetField.textContent = optimizedText;
       targetField.dispatchEvent(new Event("input", { bubbles: true }));
       console.log("Text optimized in contenteditable div");
     }
@@ -239,24 +294,5 @@ if (document.readyState === "loading") {
 // Also manually trigger a token count check when loaded
 console.log("Content script loaded, will check for Gemini responses");
 setTimeout(function () {
-  const responseText = getLatestResponseText();
-  if (responseText) {
-    // Count tokens
-    const simpleTokenCount = estimateTokenCount(responseText);
-    const betterTokenCount = countTokensMore(responseText);
-
-    // Look for token count in the response itself
-    const tokenCountMatch = responseText.match(/Number of tokens:\s*(\d+)/i);
-    let tokenCount = tokenCountMatch ? parseInt(tokenCountMatch[1]) : null;
-
-    // Log to console
-    console.log("=== GEMINI RESPONSE TOKEN COUNT ===");
-    if (tokenCount) {
-      console.log(`Gemini reported token count: ${tokenCount} tokens`);
-    }
-    console.log(`Simple estimate (chars/4): ${simpleTokenCount} tokens`);
-    console.log(`Better estimate: ${betterTokenCount} tokens`);
-    console.log(`Character count: ${responseText.length} chars`);
-    console.log("===================================");
-  }
+  extractGeminiResponse();
 }, 2000);

@@ -611,6 +611,102 @@ const queryPatterns = [
     priority: 6,
     description: "Preserves important industry context",
   },
+  {
+    category: "Pronoun removal",
+    patterns: [
+      /\b(i|me|my|you|your|he|she|it|we|us|they|them|his|her|its|our|their)\b/gi,
+    ],
+    replacement: "",
+    priority: 7,
+    description: "Removes pronouns unless contextually important",
+    contextual: true, // Important:  Only remove if contextually safe
+  },
+  //=============================================================================
+  // CONTEXTUAL STOP WORD REMOVAL
+  //=============================================================================
+  {
+    category: "Stop word removal",
+    patterns: [/\b(is|are|was|were|be|being|been|a|an|the)\b/gi],
+    replacement: "",
+    priority: 6,
+    description: "Removes common stop words contextually",
+    contextual: true, // Crucial:  Only remove if contextually safe
+  },
+  //=============================================================================
+  // SYNONYM/PARAPHRASE SUBSTITUTION  (Example - needs a larger data set)
+  //=============================================================================
+  {
+    category: "Phrase substitution",
+    patterns: [/\b(give me a list of the advantages and disadvantages)\b/gi],
+    replacement: "list pros cons",
+    priority: 8,
+    description: "Replaces verbose phrase with concise alternative",
+    contextual: true, // Could be context-dependent
+  },
+  //=============================================================================
+  // ACRONYM/ABBREVIATION HANDLING (Examples - needs a larger data set)
+  //=============================================================================
+  {
+    category: "Acronym expansion",
+    patterns: [/\bGDP\b/gi],
+    replacement: "gross domestic product",
+    priority: 7,
+    description: "Expands common acronyms",
+    contextual: false, // Generally safe to expand
+  },
+  {
+    category: "Acronym compression",
+    patterns: [/\bfrequently asked questions\b/gi],
+    replacement: "FAQs",
+    priority: 7,
+    description: "Compresses phrase to common acronym",
+    contextual: true, // Only compress if the acronym is well-known in context
+  },
+  //=============================================================================
+  // INTENT-BASED OPTIMIZATION (Example - requires intent detection logic)
+  //=============================================================================
+  {
+    category: "Intent-based optimization",
+    patterns: [/^Send an email to\s+/i], //Simplified pattern for example
+    replacement: "email ",
+    priority: 9,
+    description: "Optimizes task-completion intent (email)",
+    contextual: true, //Very context-dependent - needs intent detection
+    intent: "task_completion", // Example intent tag - needs intent detection logic.
+  },
+  //=============================================================================
+  // ELLIPSIS HANDLING (Example - requires more sophisticated NLP)
+  //=============================================================================
+  {
+    category: "Ellipsis handling",
+    patterns: [/^Best Italian restaurant near me\??$/i],
+    replacement: "find best Italian restaurant near me",
+    priority: 8,
+    description: "Completes elliptical query",
+    contextual: true, // Very context-dependent - requires good NLP
+  },
+  //=============================================================================
+  // NUMBER AND UNIT HANDLING
+  //=============================================================================
+  {
+    category: "Unit standardization",
+    patterns: [/(\d+)\s*kilograms\b/gi],
+    replacement: "$1kg",
+    priority: 7,
+    description: "Standardizes kilogram representation",
+    contextual: false, //Generally safe
+  },
+  //=============================================================================
+  // DATE AND TIME NORMALIZATION (Example - requires date parsing)
+  //=============================================================================
+  {
+    category: "Date normalization",
+    patterns: [/July 4th, (\d{4})/gi],
+    replacement: "$1-07-04",
+    priority: 7,
+    description: "Normalizes date format to ISO",
+    contextual: false, //Generally safe
+  },
 ];
 
 // Utility functions for pattern application
