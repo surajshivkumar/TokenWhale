@@ -2,6 +2,9 @@
 
 **TokenWhale** is a Chrome extension that helps users reduce token usage when interacting with Large Language Models (LLMs) like ChatGPT. By optimizing prompts, managing outputs, and estimating image token costs, TokenWhale promotes more sustainable and efficient AI usage.
 
+
+Demo :
+https://www.linkedin.com/feed/update/urn:li:activity:7318726995423436802/
 ---
 
 ## 🐋 Name Inspiration: TokenWhale 
